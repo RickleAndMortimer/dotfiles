@@ -11,6 +11,8 @@
       ./hardware-configuration.nix
       ./display.nix
       ./networks.nix
+      ./unfree.nix
+      ./audio.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -22,8 +24,23 @@
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.wireless.userControlled.enable = true; 
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
+  services.blueman.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/New_York";
+  fonts.packages = with pkgs; [
+    font-awesome
+  ];
+
+  security.rtkit.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -39,24 +56,32 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  
   users.users.nathan = {
     isNormalUser = true;
     home = "/home/nathan";
     description = "Me";
     extraGroups = [ "wheel" "networkmanager" "audio" ]; 
     packages = with pkgs; [
-      git
-      firefox
       feh
+      firefox
+      git
+      glib
+      discord
+      spotify
+      (python3.withPackages (p: with p; [
+        pygobject3 gst-python
+      ]))
+      texliveFull
       # hyprland dependencies
-      kitty
+      playerctl
+      brightnessctl
       dolphin
+      fuzzel
+      hyprpaper
+      kitty
+      pamixer
+      waybar
       wofi
     ];
   };
