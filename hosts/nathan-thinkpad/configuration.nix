@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/lenovo/thinkpad/t460s>
       ./hardware-configuration.nix
     ];
 
@@ -17,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nathan-thinkpad"; # Define your hostname.
   fonts.packages = with pkgs; [
     nerdfonts
   ];
@@ -87,7 +86,6 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.optimise.automatic = true;
