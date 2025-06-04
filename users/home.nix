@@ -61,12 +61,12 @@
     
   programs.bash = {
     enable = true;
-    bashrcExtra = (builtins.readFile ./dotfiles/.bashrc);
+    bashrcExtra = (builtins.readFile ../dotfiles/.bashrc);
   };
     
   programs.zsh = {
     enable = true;
-    initExtra = (builtins.readFile ./dotfiles/.zshrc);
+    initExtra = (builtins.readFile ../dotfiles/.zshrc);
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
@@ -80,31 +80,35 @@
     
   home.file = {
     ".config/git" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/git;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/git;
       recursive = true;
     };
     ".config/hypr" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/hypr;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/hypr;
       recursive = true;
     };
     ".config/swayidle" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/swayidle;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/swayidle;
       recursive = true;
     };
     ".config/nvim/lua" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim/lua;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/nvim;
       recursive = true;
     };
     ".config/fuzzel" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/fuzzel;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/fuzzel;
       recursive = true;
     };
     ".config/waybar" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/waybar;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/waybar;
+      recursive = true;
+    };
+    ".config/kitty" = {
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/kitty;
       recursive = true;
     };
     ".config/.zshrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.zshrc;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/.zshrc;
       recursive = true;
     };
   }; 

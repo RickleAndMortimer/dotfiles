@@ -5,19 +5,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      # <nixos-hardware/lenovo/thinkpad/t460s>
-      ./audio.nix
-      ./bluetooth.nix
-      ./display.nix
-      ./docker.nix
-      ./hardware-configuration.nix
-      ./networks.nix
-      ./nvidia.nix
-      ./unfree.nix
-      ./user.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
 

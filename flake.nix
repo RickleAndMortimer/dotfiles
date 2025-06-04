@@ -12,13 +12,38 @@
         inherit inputs;
       };
       modules = [ 
-        ./configuration.nix
+        ./audio/audio.nix
+        ./graphics/display.nix
+        ./graphics/nvidia.nix
+        ./hosts/nathan-desktop/configuration.nix
+        ./misc/docker.nix
+        ./misc/unfree.nix
+        ./users/user.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-
-          # TODO replace ryan with your own username
-          home-manager.users.nathan = import ./home.nix;
+          home-manager.users.nathan = import ./users/home.nix;
+        }
+      ];
+    };
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit inputs;
+      };
+      modules = [ 
+        ./audio/audio.nix
+        ./bluetooth/bluetooth.nix
+        ./graphics/display.nix
+        ./hosts/nixos/configuration.nix
+        ./misc/docker.nix
+        ./misc/unfree.nix
+        ./network/networks.nix
+        ./users/user.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.nathan = import ./users/home.nix;
         }
       ];
     };
