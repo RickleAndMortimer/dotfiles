@@ -7,14 +7,14 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/lenovo/thinkpad/t460s>
+      # <nixos-hardware/lenovo/thinkpad/t460s>
       ./audio.nix
       ./bluetooth.nix
       ./display.nix
       ./docker.nix
       ./hardware-configuration.nix
-      ./home-manager.nix
       ./networks.nix
+      ./nvidia.nix
       ./unfree.nix
       ./user.nix
     ];
@@ -25,7 +25,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nathan-desktop"; # Define your hostname.
   fonts.packages = with pkgs; [
     nerdfonts
   ];
@@ -95,7 +95,6 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.optimise.automatic = true;
@@ -119,6 +118,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }
