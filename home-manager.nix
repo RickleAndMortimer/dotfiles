@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
-  zsh-catppuccin = pkgs.fetchgit {
-    url = "https://github.com/catppuccin/zsh-syntax-highlighting";
-    hash = "sha256-sBeqXWrW0Bhs6qOGHgUuH3iOdmQnumBFor7IlHaF6S4=";
-    sparseCheckout = [ "themes" ];
-  };
 in
 {
   imports = [
@@ -35,10 +30,12 @@ in
       godot_4
       hunspell
       inkscape
+      kdePackages.qtsvg
       libreoffice-qt
       luarocks
       monaspace
       neofetch
+      neovim
       python3
       spotify
       texliveFull
@@ -84,10 +81,18 @@ in
 	};
     };
 
-    programs.neovim.enable = true;
-
     home.sessionVariables.NIXOS_OZONE_WL = "1";
     nixpkgs.config.allowUnfree = true;
+
+#    dotfileTemplate = dir: { 
+#      source = config.lib.file.mkOutOfStoreSymlink "./dotfile/${dir}";
+#      recursive = true;
+#    };
+#    getDotFileList = dotfilesDir: { 
+#    	{
+#	  
+#	}
+#    };
 
     home.file = {
       ".config/git" = {
@@ -102,8 +107,8 @@ in
         source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/swayidle;
         recursive = true;
       };
-      ".config/nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
+      ".config/nvim/lua" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim/lua;
         recursive = true;
       };
       ".config/fuzzel" = {
@@ -114,9 +119,9 @@ in
         source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/waybar;
         recursive = true;
       };
-      ".zsh" = {
-        source = zsh-catppuccin;
-	recursive = true;
+      ".config/.zshrc" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.zshrc;
+        recursive = true;
       };
     };
   };

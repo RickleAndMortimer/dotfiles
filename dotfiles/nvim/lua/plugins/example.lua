@@ -8,13 +8,17 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
 
-  { "neanias/everforest-nvim" },
+  { "neanias/everforest-nvim",
+    config = function() 
+      require("everforest").setup({
+        transparent_background_level = 2,
+        background = "soft",
+      })
+    end
+  },
 
   {
     "LazyVim/LazyVim",
@@ -84,8 +88,6 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
       },
     },
   },

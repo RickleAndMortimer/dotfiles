@@ -3,11 +3,10 @@
 {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  programs.hyprland.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs.hyprland.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

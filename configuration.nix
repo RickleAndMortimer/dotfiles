@@ -23,16 +23,15 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   # networking.hostName = "nixos"; # Define your hostname.
+  fonts.packages = with pkgs; [
+    nerdfonts
+  ];
 
   # Set your time zone.
   time.timeZone = "America/New_York";
-  fonts.packages = with pkgs; [
-    font-awesome
-    nerdfonts
-  ];
   security.rtkit.enable = true;
 
   # Configure network proxy if necessary
@@ -55,13 +54,16 @@
   environment.systemPackages = with pkgs; [
     vim 
     wget
+    kdePackages.qtsvg
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    ffmpegthumbs
+    icoutils
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
+    resvg
+    taglib
   ];
-
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    wpa_supplicant = pkgs.wpa_supplicant.overrideAttrs (attrs: {
-      patches = attrs.patches ++ [ ./eduroam.patch ];
-    });
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -89,11 +91,13 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
 
+  nixpkgs.config.allowUnfree = true;
   nix.optimise.automatic = true;
   nix.optimise.dates = [ "03:45" ];
   nix.settings.auto-optimise-store = true;
