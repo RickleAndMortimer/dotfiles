@@ -70,12 +70,12 @@
 
   programs.bash = {
     enable = true;
-    bashrcExtra = (builtins.readFile ../dotfiles/.bashrc);
+    bashrcExtra = (builtins.readFile ./dotfiles/nathan/.bashrc);
   };
     
   programs.zsh = {
     enable = true;
-    initExtra = (builtins.readFile ../dotfiles/.zshrc);
+    initExtra = (builtins.readFile ./dotfiles/nathan/.zshrc);
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
@@ -88,35 +88,35 @@
    
   home.file = {
     ".config/git" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/git;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/git";
       recursive = true;
     };
     ".config/hypr" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/hypr;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/hypr";
       recursive = true;
     };
     ".config/swayidle" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/swayidle;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/swayidle";
       recursive = true;
     };
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/nvim;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/nvim";
       recursive = true;
     };
     ".config/fuzzel" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/fuzzel;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/fuzzel";
       recursive = true;
     };
     ".config/waybar" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/waybar;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/waybar";
       recursive = true;
     };
     ".config/kitty" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/kitty;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/kitty";
       recursive = true;
     };
     ".config/.zshrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/.zshrc;
+      source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/dotfiles/nathan/.zshrc";
       recursive = true;
     };
   }; 
