@@ -25,6 +25,8 @@
     inkscape
     kdePackages.qtsvg
     libreoffice-qt
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
     luarocks
     monaspace
     neofetch
@@ -39,25 +41,33 @@
     pyright
     # hyprland dependencies
     brightnessctl
-    dolphin
+    clipse
+    kdePackages.dolphin
     dunst
     fuzzel
     grim
-    hyprland
+    hyprcursor
     hypridle
+    hyprland
     hyprlock
     hyprpaper
+    hyprpolkitagent
     kitty
     pamixer
     playerctl
     shotman
     slurp
     swayidle
+    udiskie
     waybar
     wl-clipboard
     wofi
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
   ];
-    
+
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
+
   programs.bash = {
     enable = true;
     bashrcExtra = (builtins.readFile ../dotfiles/.bashrc);
@@ -74,40 +84,39 @@
     };
   };
     
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
   nixpkgs.config.allowUnfree = true;
-    
+   
   home.file = {
     ".config/git" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/git;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/git;
       recursive = true;
     };
     ".config/hypr" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/hypr;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/hypr;
       recursive = true;
     };
     ".config/swayidle" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/swayidle;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/swayidle;
       recursive = true;
     };
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/nvim;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/nvim;
       recursive = true;
     };
     ".config/fuzzel" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/fuzzel;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/fuzzel;
       recursive = true;
     };
     ".config/waybar" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/waybar;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/waybar;
       recursive = true;
     };
     ".config/kitty" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/kitty;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/kitty;
       recursive = true;
     };
     ".config/.zshrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./../dotfiles/.zshrc;
+      source = config.lib.file.mkOutOfStoreSymlink ../dotfiles/.zshrc;
       recursive = true;
     };
   }; 

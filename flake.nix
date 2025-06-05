@@ -20,10 +20,11 @@
         ./misc/docker.nix
         ./misc/unfree.nix
         ./users/user.nix
+        ./user_profiles/gamer.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nathan = import ./users/home.nix;
+          home-manager.users.nathan = import ./users/home_big.nix;
         }
       ];
     };
