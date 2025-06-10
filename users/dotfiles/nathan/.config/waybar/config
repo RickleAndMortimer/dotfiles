@@ -6,32 +6,22 @@
     // Choose the order of the modules
     "modules-left": [ "hyprland/workspaces" ],
     "modules-center": [],
-    "modules-right": ["network", "pulseaudio", "backlight", "keyboard-state", "battery", "clock"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": ["idle_inhibitor", "network", "pulseaudio", "backlight", "keyboard-state", "battery", "clock"],
     "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{icon}",
+	"all-outputs": true,
+        "format": "{name}: {icon}",
         "format-icons": {
-            "default": "",
-            "active": "󰮯",
-            "urgent": "󰊠"
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
         },
-        "persistent_workspaces": {
+        "persistant_workspaces": {
             "*": 5
         }
     },
@@ -43,9 +33,6 @@
             "locked": "",
             "unlocked": ""
         }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -85,18 +72,17 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
+        "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}%",
-        "format-icons": []
+        "format": "{percent}% {icon}",
+        "format-icons": ["🔅", "🔆"]
     },
     "battery": {
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -104,8 +90,8 @@
         "format-charging": "{capacity}% 󰃨",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        "format-good": "", // An empty format will hide the module
+        "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
@@ -119,7 +105,7 @@
         "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-	"on-click": "kitty --command nmtui"
+	"on-click": "kitty --command wpa_cli"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
